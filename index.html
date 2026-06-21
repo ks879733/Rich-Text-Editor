@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="firstPage">
+      <button onclick="startBtn()" class="start-btn">Start Editing</button>
+    </div>
+    <div class="container inactive">
+      <div class="tool-bar">
+        <div class="head">
+          <input type="text" placeholder="FileName" value="File Name" id="file-name"/>
+          <select onchange="handleFileUpLoad(this.value)">
+            <option value="" selected hidden>File</options>
+            <option value="new">New File</options>
+            <option value="txt">Save as text</options>
+            <option value="pdf">Export as PDF</options>
+          </select>
+          <select onchange="formate_Doc('formatBlock', this.value);this.selectedIndex=0;">
+            <option value="" selected hidden>Format</options>
+            <option value="h1">Heading h1</options>
+            <option value="h2">Heading h2</options>
+            <option value="h3">Heading h3</options>
+            <option value="h4">Heading h4</options>
+            <option value="h5">Heading h5</options>
+            <option value="h6">Heading h6</options>
+            <option value="h7">Paragraph</options>
+          </select>
+
+          <select onchange="formate_Doc('fontSize',this.value);this.selectedIndex=0;">
+            <option value="" selected hidden>Font Size</options>
+            <option value="1">Extra small</options>
+            <option value="2">Small</options>
+            <option value="3">Medium</options>
+            <option value="4">Large</options>
+            <option value="5">Extra Large</options>
+            <option value="6">Big</options>
+          </select>
+
+          <div class="color">
+            <span>Color</span>
+            <input type="color" oninput="formate_Doc('foreColor', this.value);this.value='#111'" />
+          </div>
+
+          <div class="color">
+            <span>Background</span>
+            <input type="color" oninput="formate_Doc('hiliteColor', this.value);this.value='#111'"/>
+          </div>
+        </div>
+        <div class="btn-toolbar">
+          <button onclick="formate_Doc('undo')"><i class="fa-solid fa-rotate-left"></i></button>
+          <button onclick="formate_Doc('redo')"><i class="fa-solid fa-rotate-right"></i></button>
+          <button onclick="formate_Doc('bold')"><i class="fa-solid fa-bold"></i></button>
+          <button onclick="formate_Doc('underline')"><i class="fa-solid fa-underline"></i></button>
+          <button onclick="formate_Doc('italic')"><i class="fa-solid fa-italic"></i></button>
+          <button onclick="formate_Doc('strikethrough')"><i class="fa-solid fa-strikethrough"></i></button>
+          <button onclick="formate_Doc('justifyLeft')"><i class="fa-solid fa-align-left"></i></button>
+          <button onclick="formate_Doc('justifyCenter')"><i class="fa-solid fa-align-center"></i></button>
+          <button onclick="formate_Doc('justifyRight')"><i class="fa-solid fa-align-right"></i></button>
+          <button onclick="formate_Doc('justifyFull')"><i class="fa-solid fa-align-justify"></i></button>
+          <button onclick="formate_Doc('insertOrderedList')"><i class="fa-solid fa-list"></i></button>
+          <button onclick="formate_Doc('insertUnorderedList')"><i class="fa-solid fa-list"></i></button>
+          <button onclick="handleAddLink()"><i class="fa-solid fa-link"></i></button>
+          <button onclick="formate_Doc('unLink')"><i class="fa-solid fa-link-slash"></i></button>
+          <button><i class="fa-solid fa-code"></i></button>         
+          <button onclick="handleFileUpLoad('new')" id="clear-all">Clear All</button>         
+        </div>
+      </div>
+      <div id="content" contenteditable="true"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
